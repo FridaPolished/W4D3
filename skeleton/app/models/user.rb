@@ -11,7 +11,11 @@
 #
 
 class User < ApplicationRecord
-   after_initialize :ensure_session_token #add session token
+  #add validations 
+  
+  attr_reader :password
+
+  after_initialize :ensure_session_token #add session token
 
    def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
@@ -40,7 +44,7 @@ class User < ApplicationRecord
     user.is_password?(password) ? user : nil
   end
 
-  
+
 
 
 
